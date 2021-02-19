@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{ block.super }}
+<div class="row">
+{% for property in object_list %}
+<div class="col-3 m-3">
+<div class="card" style="width: 18rem;">
+  <img src="{{ property.image.url }}" class="card-img-top" alt="...">
+  <div class="card-body"> 
+
+    <h2 class="card-title">{{property.property_type}}</h2>
+    <p class="cart-text">{{property.title}}</p>
+    <p class="card-text">{{property.location}}</p>
+    <p class="card-text">{{property.bedRooms}}</p>
+    <p class="card-text">{{property.bathRooms}}</p>
+    <p class="card-text">{{property.lift}}</p>
+    <p class="card-text">{{property.twoWheelerParking}}</p>
+    <p class="card-text">{{property.carParking}}</p>
+    <p class="card-text">{{property.price}}</p>
+    <a href="{{property.get_absolute_url}}" class="btn btn-primary">Click</a>
+    <hr>
+  </div>
+</div>
+        
+        
+
+</div>
+{% endfor %}
+</div>
+{% endblock %}

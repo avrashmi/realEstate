@@ -1,0 +1,46 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+
+<form method="POST" action="/bookings_form/">
+{% csrf_token %}
+
+<img src="{{ object.image.url}}"><br>
+{{ object.property_type}}<br>
+{{ object.title}}<br>
+{{ object.location}}<br>
+{{ object.bedRooms}}<br>
+{{ object.bathRooms}}<br>
+{{ object.lift}}<br>
+{{ object.carParking}}<br>
+{{ object.twoWheelerParking}}<br>
+{{ object.security}}<br>
+{{ object.cctv}}<br>
+{{ object.available_from}}<br>
+{{ object.price}}<br>
+
+<hr>
+{% for status in property_status%}
+<h2>property status</h2><br>
+{{ status.text }}<br>
+{{ status.date}}<br>
+
+{% endfor %}
+
+<hr>
+{% for cost in property_cost%}
+<h2>property cost</h2><br>
+{{ cost.value}}<br>
+
+{% endfor %}
+
+<input type="hidden" name="property-type" value="{{object.id}}" >
+
+
+<button type="submit" >Book</button>
+
+</form>
+
+
+{% endblock %}
