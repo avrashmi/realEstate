@@ -1,6 +1,6 @@
 from django import forms
-from properties.models import Property,SiteVists
-from django.forms.widgets import NumberInput
+from properties.models import Property,SiteVists,User
+from django.forms.widgets import NumberInput,PasswordInput,EmailInput
 
 '''class PropertysForm(forms.Form):
     name = forms.CharField(max_length=20)
@@ -49,6 +49,7 @@ class PropertyForm1(forms.ModelForm):
 
 
 
+
 class BookingsForm(forms.ModelForm):
     date =forms.DateField(widget= NumberInput(attrs={'type':'date'}))
     class Meta:
@@ -62,11 +63,21 @@ class LoginForm(forms.Form):
     password =forms.CharField(max_length=20, widget=forms.PasswordInput())
 
 
-class RegisterForm(forms.Form):
-    first_name =forms.CharField(max_length=20)
-    last_name =forms.CharField(max_length=20)
-    email =forms.EmailField(max_length=20)
-    password =forms.CharField(max_length=20, widget=forms.PasswordInput())
+class RegisterForm(forms.ModelForm):
+    password =forms.CharField(widget= PasswordInput)
+    email =forms.CharField(widget= EmailInput)
+    class Meta:
+        model =User
+        fields =['first_name', 'last_name', 'email', 'password']
+        
+        
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.set_password(self.cleaned_data['password'])
+        if commit:
+            user.save()
+
+    
 
 
 

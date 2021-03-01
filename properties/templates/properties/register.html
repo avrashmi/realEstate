@@ -2,12 +2,13 @@
 {% load crispy_forms_tags%}
 {% block content %}
 
-<form method="POST">
+<form method="POST" action="/login/">
+{% csrf_token %}
 
+<input type="hidden" name="next" value="/login/">
+{{ form | crispy}}
 
-{{ form}}
-
-
+<button type="submit">submit</button>
 
 </form>
 

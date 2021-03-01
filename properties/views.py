@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Property,PropertyType,PropertyStatus,PropertyCost,SiteVists,Bookings,Notes
+from .models import Property,PropertyType,PropertyStatus,PropertyCost,SiteVists,Bookings,Notes,User
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import FormView,CreateView
 from .forms import PropertyForm,PropertyForm1,BookingsForm,LoginForm,RegisterForm
@@ -95,10 +95,22 @@ class LoginView(LoginView):
 
 
 class RegisterView(CreateView):
-    form = RegisterForm
+    form_class = RegisterForm
+
+
     template_name = 'properties/register.html'
+    
+        
+
 
     
+
+
+    
+
+    
+
+
     
 
 
